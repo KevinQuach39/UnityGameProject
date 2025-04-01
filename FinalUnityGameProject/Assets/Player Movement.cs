@@ -7,10 +7,11 @@ public class CharacterMovement : MonoBehaviour
     private CharacterController characterController;
     [SerializeField] private float moveSpeed = 5f;
     private Vector3 moveDirection;
-
+    private Animator animator;
     void Start()
     {
         characterController = GetComponent<CharacterController>();
+        animator = GetComponent<Animator>();
     }
     void Update()
     {
@@ -18,7 +19,18 @@ public class CharacterMovement : MonoBehaviour
         float rightInput = Input.GetAxis("Horizontal");
         Vector3 forward = Camera.main.transform.forward;
         Vector3 right = Camera.main.transform.right;
-
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            RunAnimation();
+        }
+        else if (Input.GetKey(KeyCode.W))
+        {
+            WalkAnimation();
+        }
+        else
+        {
+            IdleAnimation();
+        }
         forward.y = 0f;
         right.y = 0f;
         forward.Normalize();
@@ -28,5 +40,22 @@ public class CharacterMovement : MonoBehaviour
         moveDirection.Normalize();
         moveDirection.y = 0f;
         characterController.Move(moveDirection * moveSpeed * Time.deltaTime);
+    }
+    void WalkAnimation()
+    {
+        animator.SetBool("Walk", true);
+        animator.SetBool("Run", false);
+    }
+
+    void RunAnimation()
+    {
+        animator.SetBool("Walk", false);
+        animator.SetBool("Run", true);
+    }
+
+    void IdleAnimation()
+    {
+        animator.SetBool("Walk", false);
+        animator.SetBool("Run", false);
     }
 }

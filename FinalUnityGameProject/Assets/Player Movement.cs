@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     private CharacterController characterController;
     [SerializeField] private float moveSpeed = 5f;
@@ -38,7 +38,8 @@ public class CharacterMovement : MonoBehaviour
       
         moveDirection = (forwardInput * forward) + (rightInput * right);
         moveDirection.Normalize();
-        moveDirection.y = 0f;
+        moveDirection.y = 0;
+        print(moveDirection);
         characterController.Move(moveDirection * moveSpeed * Time.deltaTime);
     }
     void WalkAnimation()

@@ -23,7 +23,7 @@ public class CharacterMovement : MonoBehaviour
         {
             RunAnimation();
         }
-        else if (Input.GetKey(KeyCode.W))
+        else if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
         {
             WalkAnimation();
         }

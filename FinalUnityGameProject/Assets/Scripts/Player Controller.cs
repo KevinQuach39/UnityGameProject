@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     private float currentSpeed;
     private Vector3 moveDirection;
     private Animator animator;
+
     void Start()
     {
         characterController = GetComponent<CharacterController>();
@@ -18,31 +19,44 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         MovementHandler();
+        UpdateAnimations();
     }
     void MovementHandler()
     {
         float verticalInput = Input.GetAxis("Vertical");
-        if (verticalInput > 0) 
+
+        Vector3 forward = Camera.main.transform.forward;
+        forward.y = 0f;
+        forward.Normalize();
+
+        moveDirection = forward * verticalInput;
+
+        currentSpeed = Input.GetKey(KeyCode.LeftShift) ? runSpeed : walkSpeed;
+
+        characterController.Move(moveDirection * currentSpeed * Time.deltaTime);
+
+        if (moveDirection.magnitude > 0.1f)
         {
-            Vector3 forward = Camera.main.transform.forward;
-            forward.y = 0f; 
-            forward.Normalize();
-            if (Input.GetKey(KeyCode.LeftShift))
+            transform.rotation = Quaternion.LookRotation(forward);
+        }
+    }
+    void UpdateAnimations()
+    {
+        Vector3 velocity = characterController.velocity;
+        Vector3 horizontalVelocity = new Vector3(velocity.x, 0f, velocity.z);
+
+        bool isMoving = horizontalVelocity.magnitude > 0.1f;
+        bool isRunning = Input.GetKey(KeyCode.LeftShift);
+
+        if (isMoving)
+        {
+            if (isRunning)
             {
-                currentSpeed = runSpeed;
                 RunAnimation();
             }
             else
             {
-                currentSpeed = walkSpeed;
                 WalkAnimation();
-            }
-            moveDirection = forward * verticalInput;
-            characterController.Move(moveDirection * currentSpeed * Time.deltaTime);
-
-            if (moveDirection.magnitude > 0)
-            {
-                transform.rotation = Quaternion.LookRotation(forward);
             }
         }
         else

@@ -7,6 +7,9 @@ public class PlayerController : MonoBehaviour
     private CharacterController characterController;
     [SerializeField] private float walkSpeed = 5f;
     [SerializeField] private float runSpeed = 8f;
+    [SerializeField] private float shootForce = 10f;
+    [SerializeField] private GameObject paperPrefab;
+    [SerializeField] private Transform muzzle;
     private float currentSpeed;
     private Vector3 moveDirection;
     private Animator animator;
@@ -20,6 +23,7 @@ public class PlayerController : MonoBehaviour
     {
         MovementHandler();
         UpdateAnimations();
+        HandleFiring();
     }
     void MovementHandler()
     {
@@ -78,5 +82,18 @@ public class PlayerController : MonoBehaviour
     {
         animator.SetBool("Walk", false);
         animator.SetBool("Run", false);
+    }
+    void HandleFiring()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            animator.SetTrigger("FireTrigger");
+            GameObject paper = Instantiate(paperPrefab, muzzle.position, muzzle.rotation);
+            Rigidbody rb = paper.GetComponent<Rigidbody>();
+            if (rb != null)
+            {
+                rb.AddForce(muzzle.forward * shootForce, ForceMode.Impulse);
+            }
+        }
     }
 }

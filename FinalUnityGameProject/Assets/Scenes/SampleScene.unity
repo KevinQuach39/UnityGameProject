@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028331, g: 0.2257133, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1888,6 +1888,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkSpeed: 5
   runSpeed: 8
+  shootForce: 10
+  paperPrefab: {fileID: 3156507459377859699, guid: 96a396b5c7aa0cf43a04b2913f052902, type: 3}
+  muzzle: {fileID: 1583594320}
 --- !u!1001 &1213843563
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2957,6 +2960,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4556698521086310, guid: bdd91695cfcf4b643963af1fce587ef5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 375169041}
+    - targetCorrespondingSourceObject: {fileID: 4556698521086310, guid: bdd91695cfcf4b643963af1fce587ef5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1583594320}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1765116360898588, guid: bdd91695cfcf4b643963af1fce587ef5, type: 3}
       insertIndex: -1
@@ -2968,6 +2974,37 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1121518609}
   m_SourcePrefab: {fileID: 100100000, guid: bdd91695cfcf4b643963af1fce587ef5, type: 3}
+--- !u!1 &1583594319
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1583594320}
+  m_Layer: 0
+  m_Name: Muzzle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1583594320
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1583594319}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.11209795, y: -0.15187591, z: -0.03291724, w: 0.9814704}
+  m_LocalPosition: {x: -0.023997854, y: 0.15200134, z: 0.12999623}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1947283762}
+  m_LocalEulerAnglesHint: {x: -13.299, y: -17.383, z: -1.8}
 --- !u!1 &1879369726
 GameObject:
   m_ObjectHideFlags: 0

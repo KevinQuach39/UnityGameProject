@@ -87,12 +87,18 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            animator.SetTrigger("FireTrigger");
-            GameObject paper = Instantiate(paperPrefab, muzzle.position, muzzle.rotation);
+            GameObject paper = Instantiate(paperPrefab, muzzle.position, Quaternion.identity);
             Rigidbody rb = paper.GetComponent<Rigidbody>();
+            Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
+            Vector3 shootDirection = Camera.main.transform.forward;
+            if (Physics.Raycast(ray, out RaycastHit hit, 100f))
+            {
+                shootDirection = (hit.point - muzzle.position).normalized;
+            }
+            paper.transform.forward = shootDirection;
             if (rb != null)
             {
-                rb.AddForce(muzzle.forward * shootForce, ForceMode.Impulse);
+                rb.AddForce(shootDirection * shootForce, ForceMode.Impulse);
             }
         }
     }

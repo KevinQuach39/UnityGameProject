@@ -1,38 +1,40 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public float health = 20f;
-    public bool dead = false;
+    public float health = 100f;
+    private bool isDead = false;
     private Animator animator;
-
-    void Start()
+    private void Start()
     {
         animator = GetComponent<Animator>();
     }
     public void TakeDamage(float amount)
     {
-        if (dead) return;
+        if (isDead) return;
 
         health -= amount;
+        print("Zombie Health: " + health);
+
         if (health <= 0f)
         {
             Die();
         }
     }
-    void Die()
+    private void Die()
     {
-        dead = true;
-        if (animator != null)
-        {
-            animator.SetBool("isDead", true);
-        }
-        Destroy(gameObject, 2f);
+        isDead = true;
+        animator.SetBool("isDead", true);
+        StartCoroutine(DestroyAfterDeath());
+    }
+    private IEnumerator DestroyAfterDeath()
+    {
+        yield return new WaitForSeconds(2f);
+        Destroy(gameObject);
     }
     public bool IsDead()
     {
-        return dead;
+        return isDead;
     }
 }

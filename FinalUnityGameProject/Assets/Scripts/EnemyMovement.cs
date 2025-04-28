@@ -9,7 +9,6 @@ public class EnemyMovement : MonoBehaviour
     public float attackDistance = 2f;
     private Animator animator;
     private Enemy enemyHealth;
-    
     void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
@@ -22,12 +21,9 @@ public class EnemyMovement : MonoBehaviour
         {
             return;
         }
-
         float distance = Vector3.Distance(transform.position, target.position);
-
         transform.position = Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
         transform.LookAt(target);
-
         if (distance <= attackDistance)
         {
             animator.SetBool("isAttacking", true);

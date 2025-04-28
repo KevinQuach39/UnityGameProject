@@ -13,7 +13,8 @@ public class PlayerController : MonoBehaviour
     private float currentSpeed;
     private Vector3 moveDirection;
     private Animator animator;
-
+    private enum MovementState { Idle, Walking, Running }
+    private MovementState currentMovementState = MovementState.Idle;
     void Start()
     {
         characterController = GetComponent<CharacterController>();
@@ -48,24 +49,25 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 velocity = characterController.velocity;
         Vector3 horizontalVelocity = new Vector3(velocity.x, 0f, velocity.z);
-
         bool isMoving = horizontalVelocity.magnitude > 0.1f;
         bool isRunning = Input.GetKey(KeyCode.LeftShift);
-
         if (isMoving)
         {
             if (isRunning)
             {
                 RunAnimation();
+                currentMovementState = MovementState.Running;
             }
             else
             {
                 WalkAnimation();
+                currentMovementState = MovementState.Walking;
             }
         }
         else
         {
             IdleAnimation();
+            currentMovementState = MovementState.Idle;
         }
     }
     void WalkAnimation()
@@ -87,6 +89,8 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            PlayFiringAnimation();
+
             GameObject paper = Instantiate(paperPrefab, muzzle.position, Quaternion.identity);
             Rigidbody rb = paper.GetComponent<Rigidbody>();
             Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
@@ -100,6 +104,21 @@ public class PlayerController : MonoBehaviour
             {
                 rb.AddForce(shootDirection * shootForce, ForceMode.Impulse);
             }
+        }
+    }
+    void PlayFiringAnimation()
+    {
+        switch (currentMovementState)
+        {
+            case MovementState.Idle:
+                animator.SetTrigger("IdleFire");
+                break;
+            case MovementState.Walking:
+                animator.SetTrigger("WalkFire");
+                break;
+            case MovementState.Running:
+                animator.SetTrigger("RunFire");
+                break;
         }
     }
 }

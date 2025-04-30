@@ -13,10 +13,8 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(float amount)
     {
         if (isDead) return;
-
         health -= amount;
         print("Zombie Health: " + health);
-
         if (health <= 0f)
         {
             Die();

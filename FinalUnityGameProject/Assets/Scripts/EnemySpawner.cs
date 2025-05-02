@@ -12,7 +12,7 @@ public class EnemySpawner : MonoBehaviour
     {
         if (enemyPrefab == null)
         {
-            Debug.LogError("Enemy Prefab is not assigned in the Inspector!");
+            Debug.LogError("Enemy prefab is misisng");
             return;  
         }
         StartCoroutine(SpawnEnemies());
@@ -23,20 +23,22 @@ public class EnemySpawner : MonoBehaviour
         {
             if (currentEnemies < maxEnemies)
             {
-                if (enemyPrefab != null)
+                Vector3 randomPos = transform.position + Random.insideUnitSphere * spawnRadius;
+                randomPos.y = 0;
+                GameObject enemy = Instantiate(enemyPrefab, randomPos, Quaternion.identity);
+                Enemy enemyScript = enemy.GetComponent<Enemy>();
+                if (enemyScript != null)
                 {
-                    Vector3 randomPos = transform.position + Random.insideUnitSphere * spawnRadius;
-                    randomPos.y = 0;
-                    Instantiate(enemyPrefab, randomPos, Quaternion.identity);
-                    currentEnemies++;
+                    enemyScript.spawner = this;
                 }
-                else
-                {
-                    print("Enemy Prefab is missing");
-                }
+                currentEnemies++;
             }
             yield return new WaitForSeconds(spawnInterval);
         }
+    }
+    public void EnemyDied()
+    {
+        currentEnemies = Mathf.Max(0, currentEnemies - 1);
     }
     private void OnDrawGizmos()
     {

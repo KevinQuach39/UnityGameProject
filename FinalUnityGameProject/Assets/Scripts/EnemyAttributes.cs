@@ -6,6 +6,8 @@ public class Enemy : MonoBehaviour
     public float health = 100f;
     private bool isDead = false;
     private Animator animator;
+    [HideInInspector]
+    public EnemySpawner spawner;
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -24,6 +26,10 @@ public class Enemy : MonoBehaviour
     {
         isDead = true;
         animator.SetBool("isDead", true);
+        if (spawner != null)
+        {
+            spawner.EnemyDied(); 
+        }
         StartCoroutine(DestroyAfterDeath());
     }
     private IEnumerator DestroyAfterDeath()

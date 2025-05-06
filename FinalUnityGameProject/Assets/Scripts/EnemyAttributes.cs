@@ -28,7 +28,11 @@ public class Enemy : MonoBehaviour
         animator.SetBool("isDead", true);
         if (spawner != null)
         {
-            spawner.EnemyDied(); 
+            spawner.EnemyDied();
+        }
+        if (Score.Instance != null)
+        {
+            Score.Instance.AddKill();
         }
         StartCoroutine(DestroyAfterDeath());
     }

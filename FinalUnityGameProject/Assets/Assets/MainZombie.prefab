@@ -647,6 +647,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  spawner: {fileID: 0}
+  healthUIPrefab: {fileID: 6026067903230590782, guid: aac532bb2699ce143b62f611262fa3f1, type: 3}
 --- !u!114 &141681136205953486
 MonoBehaviour:
   m_ObjectHideFlags: 0

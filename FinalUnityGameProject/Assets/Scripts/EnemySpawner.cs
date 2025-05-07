@@ -12,7 +12,7 @@ public class EnemySpawner : MonoBehaviour
     {
         if (enemyPrefab == null)
         {
-            Debug.LogError("Enemy prefab is misisng");
+            print("Enemy prefab is missing");
             return;  
         }
         StartCoroutine(SpawnEnemies());
@@ -26,6 +26,7 @@ public class EnemySpawner : MonoBehaviour
                 Vector3 randomPos = transform.position + Random.insideUnitSphere * spawnRadius;
                 randomPos.y = 0;
                 GameObject enemy = Instantiate(enemyPrefab, randomPos, Quaternion.identity);
+                
                 Enemy enemyScript = enemy.GetComponent<Enemy>();
                 if (enemyScript != null)
                 {

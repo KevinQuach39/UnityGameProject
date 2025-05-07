@@ -1145,12 +1145,24 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8935033543027016183, guid: aac532bb2699ce143b62f611262fa3f1, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: d7cffddcbc0cc8f4ebe6e28eb9804082, type: 3}
+    - target: {fileID: 8935033543027016183, guid: aac532bb2699ce143b62f611262fa3f1, type: 3}
+      propertyPath: m_FontData.m_BestFit
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8935033543027016183, guid: aac532bb2699ce143b62f611262fa3f1, type: 3}
       propertyPath: m_FontData.m_FontSize
-      value: 30
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8935033543027016183, guid: aac532bb2699ce143b62f611262fa3f1, type: 3}
       propertyPath: m_FontData.m_Alignment
-      value: 4
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8935033543027016183, guid: aac532bb2699ce143b62f611262fa3f1, type: 3}
+      propertyPath: m_FontData.m_FontStyle
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8935033543027016183, guid: aac532bb2699ce143b62f611262fa3f1, type: 3}
       propertyPath: m_FontData.m_VerticalOverflow
@@ -1170,7 +1182,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9106275395248971858, guid: aac532bb2699ce143b62f611262fa3f1, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.7
+      value: 0.69999695
       objectReference: {fileID: 0}
     - target: {fileID: 9106275395248971858, guid: aac532bb2699ce143b62f611262fa3f1, type: 3}
       propertyPath: m_AnchoredPosition.y

@@ -11,14 +11,17 @@ public class Enemy : MonoBehaviour
     public GameObject healthUIPrefab;  
     private GameObject healthUIInstance;
     private Text healthText;
+    private Collider col;
     private void Start()
     {
         animator = GetComponent<Animator>();
+        col = GetComponent<Collider>();
+
         if (healthUIPrefab)
         {
             healthUIInstance = Instantiate(healthUIPrefab);
             healthUIInstance.transform.SetParent(transform);  
-            healthText = healthUIInstance.GetComponentInChildren<Text>();  
+            healthText = healthUIInstance.GetComponentInChildren<Text>();
         }
         UpdateHealthText();
     }
@@ -26,7 +29,7 @@ public class Enemy : MonoBehaviour
     {
         if (healthUIInstance != null)
         {
-            Vector3 offsetPosition = transform.position + Vector3.up * 2f;
+            Vector3 offsetPosition = transform.position + Vector3.up * 0.5f;
             healthUIInstance.transform.position = offsetPosition;
             healthUIInstance.transform.rotation = Quaternion.LookRotation(healthUIInstance.transform.position - Camera.main.transform.position);
         }
@@ -53,6 +56,10 @@ public class Enemy : MonoBehaviour
     {
         isDead = true;
         animator.SetBool("isDead", true);
+        if (col != null)
+        {
+            col.enabled = false;  
+        }
         if (spawner != null)
         {
             spawner.EnemyDied();
@@ -63,7 +70,7 @@ public class Enemy : MonoBehaviour
         }
         if (healthUIInstance != null)
         {
-            Destroy(healthUIInstance);
+            Destroy(healthUIInstance);  
         }
         StartCoroutine(DestroyAfterDeath());
     }

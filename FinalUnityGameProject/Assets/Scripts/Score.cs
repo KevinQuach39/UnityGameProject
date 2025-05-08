@@ -1,6 +1,5 @@
 using UnityEngine;
-using UnityEngine.UI; // for legacy Text
-
+using UnityEngine.UI; 
 public class Score : MonoBehaviour
 {
     public static Score Instance;

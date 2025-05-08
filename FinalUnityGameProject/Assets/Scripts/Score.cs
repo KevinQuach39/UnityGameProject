@@ -34,4 +34,9 @@ public class Score : MonoBehaviour
     {
         return killCount;
     }
+    public void ResetKills()
+    {
+        killCount = 0;
+        UpdateKillText();
+    }
 }

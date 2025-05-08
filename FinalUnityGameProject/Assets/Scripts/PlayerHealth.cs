@@ -43,7 +43,7 @@ public class PlayerHealth : MonoBehaviour
             {
                 zombiesKilledText.text = "Final Score: " + Score.Instance.GetKillCount() + " kill";
             }
-            zombiesKilledText.text = "Final Score: " + Score.Instance.GetKillCount() + " kill";
+            zombiesKilledText.text = "Final Score: " + Score.Instance.GetKillCount() + " kills";
         }
         PlayerController controller = GetComponent<PlayerController>();
         if (controller != null)

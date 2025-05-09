@@ -1,53 +1,46 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+public class GameOverManager : MonoBehaviour
 {
-    public static GameManager Instance;
-    public GameObject menuUI;    
-    public GameObject gameplayUI;  
-    public GameObject gameOverUI; 
-    public GameObject player;     
-    private void Awake()
+    [Header("UI Panels")]
+    public GameObject startScreenPanel;
+    public GameObject gameUIPanel;
+    public GameObject gameOverPanel;
+    [Header("Gameplay Objects")]
+    public GameObject player;
+    public GameObject enemySpawner;
+    void Start()
     {
-        if (Instance == null)
-            Instance = this;
-        else
-            Destroy(gameObject);
-    }
-    private void Start()
-    {
-        ShowMenu();
-    }
-    public void ShowMenu()
-    {
-        Time.timeScale = 0f; 
-        menuUI.SetActive(true);    
-        gameplayUI.SetActive(false);
-        gameOverUI.SetActive(false); 
-        player.SetActive(false);    
+        startScreenPanel.SetActive(true);
+        gameUIPanel.SetActive(false);
+        gameOverPanel.SetActive(false);
+        player.SetActive(false);
+        enemySpawner.SetActive(false);
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
     public void StartGame()
     {
-        Time.timeScale = 1f; 
-        menuUI.SetActive(false);     
-        gameplayUI.SetActive(true);  
-        gameOverUI.SetActive(false); 
+        startScreenPanel.SetActive(false);
+        gameUIPanel.SetActive(true);
         player.SetActive(true);
-    }
-    public void GameOver()
-    {
-        Time.timeScale = 0f;         
-        gameOverUI.SetActive(true); 
+        enemySpawner.SetActive(true);
+        gameOverPanel.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
     public void RestartGame()
     {
-        Time.timeScale = 1f;       
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name); 
+        if (Score.Instance != null)
+        {
+            Score.Instance.ResetKills();
+        }
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
     public void QuitGame()
     {
-        Application.Quit(); 
-        print("Quit Game");
+        Application.Quit();
     }
 }

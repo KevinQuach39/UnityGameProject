@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameOverManager : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
     [Header("UI Panels")]
     public GameObject startScreenPanel;

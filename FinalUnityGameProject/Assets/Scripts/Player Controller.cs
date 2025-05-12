@@ -29,17 +29,12 @@ public class PlayerController : MonoBehaviour
     void MovementHandler()
     {
         float verticalInput = Input.GetAxis("Vertical");
-
         Vector3 forward = Camera.main.transform.forward;
         forward.y = 0f;
         forward.Normalize();
-
         moveDirection = forward * verticalInput;
-
         currentSpeed = Input.GetKey(KeyCode.LeftShift) ? runSpeed : walkSpeed;
-
         characterController.Move(moveDirection * currentSpeed * Time.deltaTime);
-
         if (moveDirection.magnitude > 0.1f)
         {
             transform.rotation = Quaternion.LookRotation(forward);
@@ -90,7 +85,6 @@ public class PlayerController : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             PlayFiringAnimation();
-
             GameObject paper = Instantiate(paperPrefab, muzzle.position, Quaternion.identity);
             Rigidbody rb = paper.GetComponent<Rigidbody>();
             Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);

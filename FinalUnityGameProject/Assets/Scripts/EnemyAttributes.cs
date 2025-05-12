@@ -16,7 +16,6 @@ public class Enemy : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         col = GetComponent<Collider>();
-
         if (healthUIPrefab)
         {
             healthUIInstance = Instantiate(healthUIPrefab);

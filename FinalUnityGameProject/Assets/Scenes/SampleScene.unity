@@ -123,6 +123,54 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &9579889
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9579891}
+  - component: {fileID: 9579890}
+  m_Layer: 0
+  m_Name: SpaceshipSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &9579890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9579889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d442805e4673abe4392464a59e41c8d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spaceshipPrefab: {fileID: 1152354105411914, guid: cdbec52167efb6a48b63cebb3284c246, type: 3}
+  spawnInterval: 4.5
+  spawnHeight: 50
+  mapBounds: 100
+--- !u!4 &9579891
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9579889}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &69062055
 GameObject:
   m_ObjectHideFlags: 0
@@ -362,8 +410,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 1067960094689866890, guid: a157c9d252075ab4d992f09e00a2bcad, type: 3}
   spawnRadius: 100
-  spawnInterval: 1
-  maxEnemies: 10
+  spawnInterval: 0.8
+  maxEnemies: 15
 --- !u!4 &161592350
 Transform:
   m_ObjectHideFlags: 0
@@ -675,6 +723,7 @@ MonoBehaviour:
   gameOverPanel: {fileID: 279015569}
   player: {fileID: 1631706718}
   enemySpawner: {fileID: 161592348}
+  spaceshipSpawner: {fileID: 9579889}
 --- !u!4 &561883387
 Transform:
   m_ObjectHideFlags: 0
@@ -1699,6 +1748,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2826374028090760226, guid: f378b3bce83b60247b0be30edf13885b, type: 3}
+      propertyPath: runSpeed
+      value: 6.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3569370549362610070, guid: f378b3bce83b60247b0be30edf13885b, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -1957,3 +2010,4 @@ SceneRoots:
   - {fileID: 1877974262}
   - {fileID: 9127649672532194023}
   - {fileID: 561883387}
+  - {fileID: 9579891}

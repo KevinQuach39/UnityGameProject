@@ -69,4 +69,10 @@ public class PlayerHealth : MonoBehaviour
         }
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+    public void AddHealth(float amount)
+    {
+        currentHealth = Mathf.Min(currentHealth + amount, maxHealth);
+        UpdateHealthText();
+        print("Gained extra health! Current: " + currentHealth);
+    }
 }

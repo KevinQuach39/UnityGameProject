@@ -7,20 +7,28 @@ public class Projectile : MonoBehaviour
     public float damage = 10f;
     private void OnTriggerEnter(Collider other)
     {
-        //print("On triggerenter works");
         if (other.CompareTag("Zombie"))
         {
-            print("Zombie hit");
             Enemy enemy = other.GetComponent<Enemy>();
             if (enemy != null)
             {
                 enemy.TakeDamage(damage);
-                Destroy(gameObject);
             }
+            Destroy(gameObject);
         }
-        else
+        else if (other.CompareTag("Spaceship"))
         {
-            //print("Collided with: " + other.gameObject.name);
+            Spaceship spaceship = other.GetComponent<Spaceship>();
+            if (spaceship != null)
+            {
+                GameObject player = GameObject.FindWithTag("Player");
+                spaceship.OnHitByProjectile(player);
+            }
+            Destroy(gameObject);
         }
+        // else
+        // {
+        //     Destroy(gameObject);
+        // }
     }
 }

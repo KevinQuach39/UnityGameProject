@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     [Header("Gameplay Objects")]
     public GameObject player;
     public GameObject enemySpawner;
+    public GameObject spaceshipSpawner; 
     void Start()
     {
         startScreenPanel.SetActive(true);
@@ -17,7 +18,7 @@ public class GameManager : MonoBehaviour
         gameOverPanel.SetActive(false);
         player.SetActive(false);
         enemySpawner.SetActive(false);
-
+        spaceshipSpawner.SetActive(false); 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
@@ -27,6 +28,7 @@ public class GameManager : MonoBehaviour
         gameUIPanel.SetActive(true);
         player.SetActive(true);
         enemySpawner.SetActive(true);
+        spaceshipSpawner.SetActive(true); 
         gameOverPanel.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
